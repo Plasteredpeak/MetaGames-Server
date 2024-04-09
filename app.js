@@ -14,9 +14,11 @@ app.use(cookieParser());
 
 // Import routes
 const userRoutes = require("./src/routes/userRoutes");
+const gameRoutes = require("./src/routes/gameRoutes");
 
 // Use routes
 app.use("/api/users", userRoutes);
+app.use("/api/games", gameRoutes);
 
 const server = app.listen(PORT, () => {
   console.log(`Server is running on PORT ${PORT}`);
