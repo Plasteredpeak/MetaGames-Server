@@ -39,3 +39,17 @@ exports.getGameById = async (id) => {
     throw error;
   }
 };
+
+exports.getGenres = async () => {
+  try {
+    const response = await axios.get(`${baseUrl}/genres?key=${rawgApiKey}`, {
+      headers: {
+        "content-type": "application/json",
+      },
+    });
+
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
