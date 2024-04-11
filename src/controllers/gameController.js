@@ -4,7 +4,7 @@ const gameServices = require("../services/gameServices");
 
 exports.getAllGames = async (req, res) => {
   try {
-    const games = await gameServices.getGames();
+    const games = await gameServices.getGames(req.query);
 
     return apiResponse.success(res, req, games);
   } catch (error) {
