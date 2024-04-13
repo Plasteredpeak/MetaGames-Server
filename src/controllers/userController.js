@@ -25,6 +25,25 @@ exports.signup = async (req, res) => {
   }
 };
 
+exports.login = async (req, res) => {
+  try {
+    const validation = new Validator(req.body, {
+      email: "required|email",
+      password: "required|string",
+    });
+
+    if (validation.fails()) {
+      return apiResponse.fail(res, validation.errors, 400);
+    }
+
+    const user = await userServices.login(req.body);
+
+    return apiResponse.success(res, req, user);
+  } catch (error) {
+    return apiResponse.fail(res, error, error.status || 500);
+  }
+};
+
 exports.getAllUsers = async (req, res) => {
   try {
     const users = await userServices.getAllUsers();
